@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <title>Pizza Topping Generator</title>
+
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="bootstrap-theme.css">
+</head>
+<body>
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <a class="navbar-brand" href="#">Pizza Randomizer</a>
+      <p class="navbar-text pull-right">By the people at <a href="https://github.com/Queens-Hacks">Queen's Hacks</a></p>
+    </div>
+  </div>
+  <div class="container">
+    <form id="options">
+      <div class="jumbotron">
+        <h1>Choose Toppings!</h1>
+        <p>
+          <div class="row">
+            <div class="form-group col-sm-3">
+              <label for="Cheese">Cheese</label>
+              <input type="number" class="form-control" name="Cheese" value="1">
+            </div>
+            <div class="form-group col-sm-3">
+              <label for="Dough">Dough</label>
+              <input type="number" class="form-control" name="Dough" value="1">
+            </div>
+            <div class="form-group col-sm-3">
+              <label for="Meats">Meats</label>
+              <input type="number" class="form-control" name="Meats" value="1">
+            </div>
+            <div class="form-group col-sm-3">
+              <label for="Veggies">Veggies</label>
+              <input type="number" class="form-control" name="Veggies" value="1">
+            </div>
+          </p>
+        </div>
+        <p class="text-center"><button type="submit" class="btn btn-primary btn-lg">Generate me a Pizza</button></p>
+      </div>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script src="jquery-2.0.3.js"></script>
+  <script src="pizza.js"></script>
+</body>
+</html>
+
