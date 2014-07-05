@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset=”utf-8”> 
+        <title>Home - Pizza Picker</title>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap/css/bootstrap.css')}}">
+    </head>
+    <body>
+		<div class="container">
+			<h1><a href="#">Pizza Picker</a></h1>
+		</div>
+
+		<form class="form-horizontal" method="POST">
+		<fieldset>
+			<legend>Choose Number of Toppings</legend>
+
+			<div class="control-group">
+				<label class="control-label" for="textinput">Meat</label>
+				<div class="controls">
+					<input id="textinput" name="meatinput" type="text" placeholder="number of" class="input-small">
+    
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="textinput">Vegetable</label>
+				<div class="controls">
+					<input id="textinput" name="vegeinput" type="text" placeholder="number of" class="input-small">
+    
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="textinput">Sauce &amp; Dough</label>
+				<div class="controls">
+					<input id="textinput" name="sauceinput" type="text" placeholder="number of" class="input-small">
+    
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="textinput">Cheese</label>
+				<div class="controls">
+					<input id="textinput" name="cheeseinput" type="text" placeholder="number of" class="input-small">
+    
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="controls">
+					<button id="singlebutton" name="makepizzabutton" class="btn btn-primary" formmethod="post">Pick Pizza</button>
+				</div>
+			</div>
+
+		</fieldset>
+		</form>
+
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="{{url_for('static', filename='bootstrap/js/bootstrap.js')}}"></script>
+    </body>
+</html>
