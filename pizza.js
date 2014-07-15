@@ -6,16 +6,20 @@
     'Veggies': []
   };
 
-  $.get("https://api.scraperwiki.com/api/1.0/datastore/sqlite?format=jsondict&name=pizza_topping_scraper&query=select%20*%20from%20%60pizzas%60%20order%20by%20'toppingType'", "json")
+  var types = ['Meats', 'Veggies', 'Dough', 'Cheese'];
+
+  $.get("scraper/toppings.json", "json")
     .done(function(data) {
-      data.forEach(function(topping) {
-        toppings[topping.toppingType].push(topping.topping);
+      data.forEach(function(toppingList, i) {
+        toppingList.forEach(function(topping) {
+          toppings[types[i]].push(topping);
+        });
       });
 
       console.log(toppings);
     })
     .fail(function(xhr) {
-      console.log('Oh no! it failed!');
+      console.error('There was a problem getting the topping map!');
     });
 
   function getRandomPizza(options) {
