@@ -4,7 +4,7 @@
 
 ## Usage
 
-The Pizza-Pizza generator is avaliable online at [https://Queens-Hacks.github.io/pizza](https://Queens-Hacks.github.io/pizza). 
+The Pizza-Pizza generator is avaliable online at [http://qhack.ca/pizza](http://qhack.ca/pizza). 
 
 If you want to run it yourself, you can start a local python server by running
 
