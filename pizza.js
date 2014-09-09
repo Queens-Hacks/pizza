@@ -1,22 +1,9 @@
 (function() {
-  var toppings = {
-    'Cheese': [],
-    'Dough': [],
-    'Meats': [],
-    'Veggies': []
-  };
-
-  var types = ['Meats', 'Veggies', 'Dough', 'Cheese'];
+  var toppings;
 
   $.get("scraper/toppings.json", "json")
     .done(function(data) {
-      data.forEach(function(toppingList, i) {
-        toppingList.forEach(function(topping) {
-          toppings[types[i]].push(topping);
-        });
-      });
-
-      console.log(toppings);
+      toppings = data;
     })
     .fail(function(xhr) {
       console.error('There was a problem getting the topping map!');
@@ -36,10 +23,18 @@
     return myPizza;
   }
 
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.substring(1);
+  }
+
   $('#options').submit(function(e) {
     e.preventDefault();
 
-    var options = {};
+    var options = {
+      doughs: 1,
+      cheeses: 1,
+      sauces: 1
+    };
     $(e.currentTarget).serializeArray().forEach(function(option) {
       options[option.name] = option.value;
     });
@@ -48,7 +43,7 @@
 
     var table = '<h1>Your Pizza!</h1><table class="table">';
     for (key in pizza) {
-      table += '<tr><td style="width: 30%">' + key + '</td><td>' + pizza[key].join('<br>') + '</td></tr>';
+      table += '<tr><td style="width: 30%">' + capitalize(key) + '</td><td>' + pizza[key].join('<br>') + '</td></tr>';
     }
     table += '</table>';
 

@@ -32,25 +32,25 @@ def split_sauces_dough(toppings):
             doughs.append(topping)
         else:
             raise ValueError('Topping not a sauce or dough? {}'.format(topping))
-    return sauces, doughs
+    return {'sauces': sauces, 'doughs': doughs}
 
 
 def get_toppings():
-    toppings_lists = []
+    toppings = {}
 
     r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/meattab/")
-    toppings_lists.append(parse_toppings(r.text))
+    toppings['meats'] = parse_toppings(r.text)
 
     r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/veggietab/")
-    toppings_lists.append(parse_toppings(r.text))
+    toppings['veggies'] = parse_toppings(r.text)
 
     r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/saucesanddoughtab/")
-    toppings_lists.extend(split_sauces_dough(parse_toppings(r.text)))
+    toppings.update(split_sauces_dough(parse_toppings(r.text)))
 
     r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/cheesetab/")
-    toppings_lists.append(parse_toppings(r.text))
+    toppings['cheeses'] = parse_toppings(r.text)
 
-    return toppings_lists
+    return toppings
 
 
 if __name__ == '__main__':
