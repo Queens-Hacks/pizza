@@ -6,7 +6,7 @@ from random import randrange
 import json
 
 
-def parseToppings(html):
+def parse_toppings(html):
     soup = BeautifulSoup(html)
 
     choices = []
@@ -22,7 +22,7 @@ def parseToppings(html):
     return choices
 
 
-def splitSaucesDough(toppings):
+def split_sauces_dough(toppings):
     sauces = []
     doughs = []
     for topping in toppings:
@@ -35,25 +35,25 @@ def splitSaucesDough(toppings):
     return sauces, doughs
 
 
-def getToppings():
+def get_toppings():
     toppings_lists = []
 
     r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/meattab/")
-    toppings_lists.append(parseToppings(r.text))
+    toppings_lists.append(parse_toppings(r.text))
 
     r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/veggietab/")
-    toppings_lists.append(parseToppings(r.text))
+    toppings_lists.append(parse_toppings(r.text))
 
     r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/saucesanddoughtab/")
-    toppings_lists.extend(splitSaucesDough(parseToppings(r.text)))
+    toppings_lists.extend(split_sauces_dough(parse_toppings(r.text)))
 
     r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/cheesetab/")
-    toppings_lists.append(parseToppings(r.text))
+    toppings_lists.append(parse_toppings(r.text))
 
     return toppings_lists
 
 
 if __name__ == '__main__':
-    toppings = getToppings()
+    toppings = get_toppings()
     with open('toppings.json', 'w') as f:
         json.dump(toppings, f, indent=4)
