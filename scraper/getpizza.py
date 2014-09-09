@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup
 from random import randrange
 import json
 
-def parseToppings(soup):
+def parseToppings(html):
+    soup = BeautifulSoup(html)
 
     choices = []
 
@@ -20,21 +21,18 @@ def parseToppings(soup):
     return choices
 
 def getToppings():
-    all_soup = []
-
-    r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/meattab/")
-    all_soup.append(BeautifulSoup(r.text))
-    r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/veggietab/")
-    all_soup.append(BeautifulSoup(r.text))
-    r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/saucesanddoughtab/")
-    all_soup.append(BeautifulSoup(r.text))
-    r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/cheesetab/")
-    all_soup.append(BeautifulSoup(r.text))
-
     toppings_lists = []
 
-    for soup in all_soup:
-        toppings_lists.append(parseToppings(soup))
+    r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/meattab/")
+    toppings_lists.append(parseToppings(r.text))
+
+    r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/veggietab/")
+    toppings_lists.append(parseToppings(r.text))
+    r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/saucesanddoughtab/")
+    toppings_lists.append(parseToppings(r.text))
+    r = requests.get("http://www.pizzapizza.ca/fresh-toppings-bk/cheesetab/")
+    toppings_lists.append(parseToppings(r.text))
+
     return toppings_lists
 
 if __name__ == '__main__':
