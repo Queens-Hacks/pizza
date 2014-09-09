@@ -38,5 +38,6 @@ def getToppings():
     return toppings_lists
 
 if __name__ == '__main__':
+    toppings = getToppings()
     with open('toppings.json', 'w') as f:
-        f.write(json.dumps(getToppings(), indent=4));
+        json.dump(toppings, f, indent=4)
