@@ -11,7 +11,7 @@
 
   function getRandomPizza(options) {
     var myPizza = {};
-    for (key in options) {
+    for (var key in options) {
       var count = options[key];
       myPizza[key] = [];
       for (var i=0; i<count; i++) {
@@ -25,6 +25,18 @@
 
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.substring(1);
+  }
+
+  function unpluralize(string) {
+    return string.substring(0, string.length - 1);
+  }
+
+  function format(string, count) {
+    string = capitalize(string);
+    if (count === 1) {
+      string = unpluralize(string);
+    }
+    return string;
   }
 
   $('#options').submit(function(e) {
@@ -42,8 +54,8 @@
     var pizza = getRandomPizza(options);
 
     var table = '<h1>Your Pizza!</h1><table class="table">';
-    for (key in pizza) {
-      table += '<tr><td style="width: 30%">' + capitalize(key) + '</td><td>' + pizza[key].join('<br>') + '</td></tr>';
+    for (var key in pizza) {
+      table += '<tr><td style="width: 30%">' + format(key, pizza[key].length) + '</td><td>' + pizza[key].join('<br>') + '</td></tr>';
     }
     table += '</table>';
 
